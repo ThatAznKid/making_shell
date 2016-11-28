@@ -3,6 +3,22 @@
 #include <unistd.h>
 #include <string.h>
 
+void builtIn (char * command[]){
+	if (strcmp(command[0],"cd") == 0 ) { 
+		printf ("GOTTEM! CD HAS BEEN FOUND!\n");
+		char s[50];
+		getcwd(&s,50);
+		printf("%s\n",s);
+		chdir(command[1]);
+		getcwd(&s,50);
+		printf("%s\n",s);
+	}
+	if (strcmp(command[0],"exit") == 0 ) {
+		printf ("OOF! GOTTE! EXIT HAS BEEN FOUND\n");
+		exit(0);
+	}
+}
+
 void semicolonHandler (char * str) {
 	char * command;
 	while (str) {
@@ -15,8 +31,6 @@ void semicolonHandler (char * str) {
 }
 
 void run (char * str) {
-	trimFrontEndWhite(str);
-	removeExtraWhite(str);
 	char * command[100];
 	int i = 0;
 	while(str){
@@ -24,6 +38,7 @@ void run (char * str) {
 		i++;
 	}
 	command[i] = NULL;
+	builtIn(command);
 	int f = fork();
 	int status,r;
 	if (f == 0) {
