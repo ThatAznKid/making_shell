@@ -147,12 +147,14 @@ void run (char * str) {
 }
 
 int main(int argc, char *argv[]){
-	printf("Insert Command Here: ");
-	char line[100];
-	fgets(line,sizeof(line),stdin);
-	line[strlen(line) - 1] = '\0'; //gets rid of the new line
-	char * s = line;
-	semicolonHandler(s);
+	while (42) {
+		printf("Insert Command Here: ");
+		char line[100];
+		fgets(line,sizeof(line),stdin);
+		line[strlen(line) - 1] = '\0'; //gets rid of the new line
+		char * s = line;
+		semicolonHandler(s);
+	}
 	/*
 	char * command[100];
 	int i = 0;
